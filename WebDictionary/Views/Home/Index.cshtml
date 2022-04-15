@@ -1,0 +1,77 @@
+﻿@model List<Word>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*@{ Layout = null;}*@
+<div>
+    <div><a asp-action="CreateWord">Yeni Kisi Ekle</a></div>
+    <div><a asp-action="Index" asp-all-route-order="words" class="btn btn-success">Kelime</a></div>
+    <div><a asp-action="Index" asp-all-route-order="description"></a></div>
+
+    <input type="button" value="description" btn
+</div>
+
+<div>
+    <form>
+        <input type="text" class="form-control" id="searchBox" value="" placeholder="aranacak kelime" />
+        <input type="submit" value="Ara" />
+    </form>
+</div>
+
+
+<div>
+    <h2>Contact List</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>WORD</th>
+            <th>DESCRIPTION</th>
+            <th>DELETE </th>
+        </tr>
+        @{
+            foreach (Word word in Model)
+            {
+                <tr>
+                    <td>@word.Id</td>
+                    <td>@word.Words</td>
+                    <td>@word.Description</td>
+                    <td>
+                        <a onclick="return eminMisiniz(@word.Id)" asp-route-id="@word.Id" asp-action="Delete">Sil</a>
+                        <a asp-route-id="@word.Id" asp-action="CreateWord">Düzenle</a>
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </table>
+
+
+    <script>
+        function eminMisiniz(id) {
+            //alert(id+"nolu kaydı silmek istediğinizden emin misiniz?");
+            var dialogResult = confirm(id + "nolu kaydı silmek istediğinizden emin misiniz?");
+            console.log(dialogResult);
+            return dialogResult;
+        }
+    </script>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        a, tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+
