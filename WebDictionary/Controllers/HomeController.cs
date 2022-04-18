@@ -27,25 +27,25 @@ namespace WebDictionary.Controllers
           //  IRepositoryWord _repository = RepositoryFactory.CreateRepo("WORD");
             
             List<Word> liste = _wordRepository.List();
-           
 
-            if (order=="Words")
+
+            if (order == "Words")
             {
                 liste = liste.OrderBy(c => c.Words).ToList();
             }
             else if (order == "Description")
             {
-                liste = liste.OrderBy(c => c.Words).ToList();
+                liste = liste.OrderBy(c => c.Description).ToList();
             }
             else
             {
-                liste = liste.OrderBy(c => c.Words).ToList();
+                liste = liste.OrderBy(c => c.Id).ToList();
             }
 
-            //if (!String.IsNullOrEmpty(searchBox))
-            //{
-            //    liste = liste.Where(c => c.Words.Contains == (searchBox)||(c => c.Description.Contains == ( searchBox)).ToList();
-            //}
+            if (!String.IsNullOrEmpty(searchBox))
+            {
+                liste = liste.Where(c => c.Words.StartsWith(searchBox) || c.Description.StartsWith(searchBox)).ToList();
+            }
 
             return View(liste);
         }
@@ -65,6 +65,7 @@ namespace WebDictionary.Controllers
         [HttpPost]
         public IActionResult CreateWord(Word word)
         {
+
             _wordRepository.AddOrUpdate(word);
             return RedirectToAction("Index");
         }

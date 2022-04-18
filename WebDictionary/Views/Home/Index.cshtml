@@ -4,30 +4,31 @@
 }
 @*@{ Layout = null;}*@
 <div>
-    <div><a asp-action="CreateWord">Yeni Kisi Ekle</a></div>
-    <div><a asp-action="Index" asp-all-route-order="words" class="btn btn-success">Kelime</a></div>
-    <div><a asp-action="Index" asp-all-route-order="description"></a></div>
-
-    <input type="button" value="description" btn
+    <div style="margin-bottom:5px" >
+        <a asp-action="Index" class="btn btn-success" >Anasayfa</a>
+        <a asp-action="CreateWord" class="btn btn-success" >Yeni Kelime Ekle</a>     
+        <a asp-action="Index" asp-route-order="Words" style="margin-left:650px" class="btn btn-success">Kelime</a> 
+        <a asp-action="Index" asp-route-order="Description" class="btn btn-success" >Anlamı</a>
+    </div>
 </div>
 
 <div>
-    <form>
-        <input type="text" class="form-control" id="searchBox" value="" placeholder="aranacak kelime" />
-        <input type="submit" value="Ara" />
+    <form asp-action="Index" method="get">
+        <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Aranacak Kelime..." />
+        <input type="submit" style="margin-top:5px" value="Ara" />
     </form>
 </div>
 
 
 <div>
-    <h2>Contact List</h2>
+    <h2>Kelime ve Anlamı</h2>
 
     <table>
         <tr>
             <th>ID</th>
             <th>WORD</th>
             <th>DESCRIPTION</th>
-            <th>DELETE </th>
+            <th style="text-align:center ">SİL-GÜNCELLE </th>
         </tr>
         @{
             foreach (Word word in Model)
@@ -37,8 +38,10 @@
                     <td>@word.Words</td>
                     <td>@word.Description</td>
                     <td>
-                        <a onclick="return eminMisiniz(@word.Id)" asp-route-id="@word.Id" asp-action="Delete">Sil</a>
-                        <a asp-route-id="@word.Id" asp-action="CreateWord">Düzenle</a>
+                        <div class="text-center">
+                            <a onclick="return eminMisiniz(@word.Id)" asp-route-id="@word.Id" asp-action="Delete">Sil</a>
+                            <a asp-route-id="@word.Id" asp-action="CreateWord">Düzenle</a>
+                            </div>
                     </td>
                 </tr>
             }
@@ -65,13 +68,13 @@
         }
 
         td, th {
-            border: 1px solid #dddddd;
+            border: 1px solid #e3d4fd;
             text-align: left;
             padding: 8px;
         }
 
-        a, tr:nth-child(even) {
-            background-color: #dddddd;
+         tr:nth-child(even) {
+            background-color: #e3d4fd;
         }
     </style>
 
