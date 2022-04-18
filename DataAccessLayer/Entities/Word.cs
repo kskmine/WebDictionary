@@ -15,6 +15,8 @@ namespace DataAccessLayer.Entities
         public string Words { get; set; }
         [Required(ErrorMessage = "Tanım giriniz")]
         [Display(Name = "Tanımı")]
+      //  [StringLength(5,MinimumLength =5,ErrorMessage ="telefon 10 haneli olmalıdır")]
+       // [MyFirstVal]
         public string Description { get; set; }
     }
 }

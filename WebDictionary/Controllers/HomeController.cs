@@ -79,10 +79,10 @@ namespace WebDictionary.Controllers
             //{
             //    ModelState.AddModelError("","kelime ve tanımı aynı olamaz");
             //}
-            if (ModelState.IsValid)
-            {
-                return View(word);
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    return View(word);
+            //}
 
 
             _wordRepository.AddOrUpdate(word);

@@ -15,7 +15,11 @@
 <div>
     <form asp-action="Index" method="get">
         <input type="text" class="form-control" id="searchBox" name="searchBox" placeholder="Aranacak Kelime..." />
-        <input type="submit" style="margin-top:5px" value="Ara" />
+        @*<input type="submit" style="margin-top:5px" value="Ara" />*@    
+    <div>
+        <input type="submit" class="btn btn-info" value="Ara" >
+        <span class="glyphicon glyphicon-search"></span>
+    </div>
     </form>
 </div>
 
