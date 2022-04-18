@@ -10,8 +10,15 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        @*<div>
+            @Html.Raw(ViewData["valMessages"].ToString())
+            <div>
+                @ViewData["valMessages"]
+            </div>
+        </div>*@
         <form asp-action="CreateWord" method="post" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger">           
+            </div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input readonly asp-for="Id" class="form-control" />
@@ -43,21 +50,25 @@
 
 <script>
     function validateForm() {
-        let kelime = $('#Words').val();
-        let anlamı = $('#Description').val();
+        //let kelime = $('#Words').val();
+        //let anlamı = $('#Description').val();
 
-        if (kelime == "" && anlamı == "") {
-            alert("Kelime ve Anlamı boş olamaz");
-            return false;
-        }
-        else if (kelime == "") {
-            alert("Kelime boş olamaz");
-            return false;
-        } else if (anlamı == "")  {
-            alert("Anlamı boş olamaz");
-            return false;
-        } 
-        return true;
+        //if (kelime == "" && anlamı == "") {
+        //   // alert("Kelime ve Anlamı boş olamaz");
+        //    $("[data-valmsg-for=Words]").html("Kelime boş olamaz")
+        //    $("[data-valmsg-for=Description]").html("Anlamı boş olamaz")
+        //    return false;
+        //}
+        //if (kelime == "") {
+        //   // alert("Kelime boş olamaz");
+        //    $("[data-valmsg-for=Words]").html("Kelime boş olamaz")
+        //    return false;
+        //}if (anlamı == "")  {
+        //    //alert("Anlamı boş olamaz");
+        //    $("[data-valmsg-for=Description]").html("Anlamı boş olamaz")
+        //    return false;
+        //} 
+        //return true;
     }
 </script>
 }

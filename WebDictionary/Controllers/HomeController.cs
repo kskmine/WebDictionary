@@ -53,6 +53,7 @@ namespace WebDictionary.Controllers
         [HttpGet]
         public IActionResult CreateWord(int? id)//? şey demek null olabilir demek
         {
+          // ViewData["valMessages"] = "";
             Word model = new Word();
             if (id.HasValue && id > 0)
             {
@@ -65,6 +66,24 @@ namespace WebDictionary.Controllers
         [HttpPost]
         public IActionResult CreateWord(Word word)
         {
+           
+           // ViewData["valMessages"] = "";
+            //if (String.IsNullOrEmpty(word.Words))
+            //{
+            //    // ViewData["valMessages"] = "Kelime girilmesi zorunludur.";
+            //    ModelState.AddModelError("Words", "Kelime boş olamaz");
+            //    return View(word);
+            //}
+            ////kelime ve tanımı aynı olmasın
+            //if (word.Words==word.Description)
+            //{
+            //    ModelState.AddModelError("","kelime ve tanımı aynı olamaz");
+            //}
+            if (ModelState.IsValid)
+            {
+                return View(word);
+            }
+
 
             _wordRepository.AddOrUpdate(word);
             return RedirectToAction("Index");
