@@ -16,15 +16,22 @@ namespace WebDictionary.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         IRepositoryWord _wordRepository;
-        public HomeController(ILogger<HomeController> logger,IRepositoryWord repositoryWord)
+        Test _tst;
+        public HomeController(ILogger<HomeController> logger,IRepositoryWord repositoryWord,Test tst,Test1 tst1)
         {
             _logger = logger;
             _wordRepository = repositoryWord;
-         //   _wordRepository = RepositoryFactory.CreateRepo("WORD");
+            //   _wordRepository = RepositoryFactory.CreateRepo("WORD");
+
+            //Test tst = new Test();
+            _tst = tst;
         }
 
         public IActionResult Index(string order,string searchBox)
         {
+            return RedirectToAction("Index","Test");/////Test Controller a redirect yaptı.
+
+
           //  IRepositoryWord _repository = RepositoryFactory.CreateRepo("WORD");
             
             List<Word> liste = _wordRepository.List();

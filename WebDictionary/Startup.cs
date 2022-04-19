@@ -1,4 +1,4 @@
-using DataAccessLayer;
+﻿using DataAccessLayer;
 using DataAccessLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +31,15 @@ namespace WebDictionary
 
            // services.AddScoped<IRepositoryWord, WordRepositoryJson>();
             services.AddScoped<IRepositoryWord,WordRepository>();
+
+
+            /////////////////////////Test örneği ile instanceCount sayımı,abstraction////////////////////////////////
+          //  services.AddTransient<Test>();/////////ne  zaman ihtiyaç olursa bir test objesi üret.///////////////
+            //services.AddSingleton<Test>();/////////bir tane üretir eğer yine ihtiyaç olursa aynısını kullan.///////
+           // services.AddScoped<Test>();////////1 request boyunca bir tane üretir,ihtiyaç olursa 1 tane daha üretir.
+            //services.AddTransient<Test>();
+            //services.AddTransient<Test1>();
+            //services.AddTransient<Deneme>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
