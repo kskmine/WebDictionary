@@ -1,4 +1,5 @@
 using DataAccessLayer;
+using DataAccessLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,9 @@ namespace WebDictionary
              services.AddDbContext<DictionaryDbContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("MssqlConnection")));
              services.AddControllersWithViews();
+
+           // services.AddScoped<IRepositoryWord, WordRepositoryJson>();
+            services.AddScoped<IRepositoryWord,WordRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

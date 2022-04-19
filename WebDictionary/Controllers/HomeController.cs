@@ -16,10 +16,11 @@ namespace WebDictionary.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         IRepositoryWord _wordRepository;
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IRepositoryWord repositoryWord)
         {
             _logger = logger;
-            _wordRepository = RepositoryFactory.CreateRepo("WORD");
+            _wordRepository = repositoryWord;
+         //   _wordRepository = RepositoryFactory.CreateRepo("WORD");
         }
 
         public IActionResult Index(string order,string searchBox)

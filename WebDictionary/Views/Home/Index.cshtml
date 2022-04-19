@@ -8,7 +8,7 @@
         <a asp-action="Index" class="btn btn-info" >Anasayfa</a>
         <a asp-action="CreateWord" class="btn btn-info" >Yeni Kelime Ekle</a>     
         <a asp-action="Index" asp-route-order="Words" style="margin-left:650px" class="btn btn-info">Kelime</a> 
-        <a asp-action="Index" asp-route-order="Description" class="btn btn-info" >Anlamı</a>
+        @*<a asp-action="Index" asp-route-order="Description" class="btn btn-info" >Anlamı</a>*@
     </div>
 </div>
 
@@ -44,7 +44,7 @@
                     <td>
                         <div class="text-center">
                             <a onclick="return eminMisiniz(@word.Id)" class="btn btn-warning " style="margin-left:5px" asp-route-id="@word.Id" asp-action="Delete">Sil</a>
-                            <a asp-route-id="@word.Id"  class="btn btn-primary" asp-action="CreateWord">Düzenle</a>
+                            <a asp-route-id="@word.Id"  class="btn btn-info" asp-action="CreateWord">Düzenle</a>
                             </div>
                     </td>
                 </tr>
