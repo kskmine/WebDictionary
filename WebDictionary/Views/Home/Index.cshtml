@@ -1,4 +1,4 @@
-﻿@model List<Word>
+﻿@model List<WordViewModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -35,7 +35,7 @@
             <th style="text-align:center ">SİL-GÜNCELLE </th>
         </tr>
         @{
-            foreach (Word word in Model)
+            foreach (WordViewModel word in Model)
             {
                 <tr>
                     <td>@word.Id</td>

@@ -41,24 +41,36 @@ namespace WebDictionary.Controllers
             {
                 liste = liste.OrderBy(c => c.Id).ToList();
             }
+            
 
             if (!String.IsNullOrEmpty(searchBox))
             {
                 liste = liste.Where(c => c.Words.StartsWith(searchBox) || c.Description.StartsWith(searchBox)).ToList();
             }
 
-            return View(liste);
+            List<WordViewModel> model = new List<WordViewModel>();
+
+            foreach (var item in liste)
+            {
+                WordViewModel wv = new WordViewModel() { Id = item.Id, Words = item.Words, Description = item.Description };
+                model.Add(wv);
+            }
+
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult CreateWord(int? id)//? şey demek null olabilir demek
         {
           // ViewData["valMessages"] = "";
-            Word model = new Word();
+            WordViewModel model = new WordViewModel();
             if (id.HasValue && id > 0)
             {
                 List<Word> kelimeler = _wordRepository.List();
-                model = kelimeler.First(c => c.Id == id);
+                var word = kelimeler.First(c => c.Id == id);
+                model.Id = word.Id;
+                model.Words = word.Words;
+                model.Description = word.Description;
             }
             return View(model);
         }
@@ -66,8 +78,8 @@ namespace WebDictionary.Controllers
         [HttpPost]
         public IActionResult CreateWord(Word word)
         {
-           
-           // ViewData["valMessages"] = "";
+
+            // ViewData["valMessages"] = "";
             //if (String.IsNullOrEmpty(word.Words))
             //{
             //    // ViewData["valMessages"] = "Kelime girilmesi zorunludur.";
@@ -79,15 +91,17 @@ namespace WebDictionary.Controllers
             //{
             //    ModelState.AddModelError("","kelime ve tanımı aynı olamaz");
             //}
-            //if (ModelState.IsValid)
-            //{
-            //    return View(word);
-            //}
+             if (!ModelState.IsValid)
+            {
+                return View(word);
+            }
 
 
             _wordRepository.AddOrUpdate(word);
             return RedirectToAction("Index");
         }
+
+
         public IActionResult Delete(int id)
         {
             _wordRepository.Delete(id);
